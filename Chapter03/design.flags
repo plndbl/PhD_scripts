@@ -1,0 +1,9 @@
+-extra_res_fa MFL.params 
+-parser:protocol Design.xml 
+-out:no_nstruct_label 
+-run:preserve_header 
+-out:suffix _output_design 
+-out:file:scorefile score_design.sc 
+-ex1 
+-ex2 
+-overwrite 
