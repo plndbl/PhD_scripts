@@ -1,0 +1,25 @@
+source leaprc.protein.ff14SB
+source leaprc.gaff
+source leaprc.water.tip3p
+
+
+addAtomTypes {
+        {"FE" "Fe" "sp3"}
+        { "NO" "N" "sp2" }    ## Modified by George to define NO and NP atoms as sp2 hybridised.
+        { "NP" "N" "sp2" }    ## Prevents sp0 errors in leap.
+
+}
+
+
+loadamberparams heme.frcmod
+loadoff hemeb.lib
+loadoff  RBF_2.off
+mol = loadpdb design_2_RBF_13.pdb
+bond mol.8.NE2 mol.110.FE
+bond mol.66.NE2 mol.110.FE
+loadamberparams  RBF_2.frcmod
+solvateOct mol TIP3PBOX 12.0 0.78
+addIonsRand mol Na+ 0
+savepdb mol design_2_RBF_13_tleap.pdb
+saveamberparm mol design_2_RBF_13.prmtop design_2_RBF_13.inpcrd
+quit
