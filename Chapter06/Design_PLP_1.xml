@@ -1,0 +1,43 @@
+<ROSETTASCRIPTS> 
+        
+    <SCOREFXNS>
+        <ScoreFunction name="myscore" weights="ref2015" >
+	<Reweight scoretype="atom_pair_constraint" weight="10.0" />
+        </ScoreFunction>
+    </SCOREFXNS>
+
+    <RESIDUE_SELECTORS>
+        <Index name="notligand_index" resnums="1-180" />
+    </RESIDUE_SELECTORS>
+
+    <TASKOPERATIONS>
+        <DetectProteinLigandInterface name="design_interface" cut1="6.0" cut2="8.0" cut3="10.0" cut4="12.0" design="1" resfile="Design_PLP.resfile" />
+        <OperateOnResidueSubset name="notligand_tsk" selector="notligand_index" >
+            <PreventRepackingRLT/>
+        </OperateOnResidueSubset>
+        ReadResfile name="Resfile_tsk" filename="Design_PLP.resfile" />
+    </TASKOPERATIONS> 
+
+    <FILTERS>
+        <TotalSasa name="totalsasa_filter" threshold="1" upper_threshold="100" hydrophobic="0" polar="0" task_operations="notligand_tsk" confidence="0" />
+    </FILTERS>
+
+    <MOVERS>
+	<ConstraintSetMover name="LysCst" cst_fa_file="PLP_5BVL_231119_LysArgTyr_rst_shortcst.cst" add_constraints="true"/>
+	<AddOrRemoveMatchCsts name="MyCst" cstfile="PLP_5BVL_231119_LysArgTyr_rst_PP3_copy.cst" cst_instruction="add_new" keep_covalent="true"/>
+        <FastDesign name="FastDesign" scorefxn="myscore" disable_design="false" task_operations="design_interface" repeats="2"
+ cst_file="PLP_5BVL_231119_LysArgTyr_rst_shortcst.cst"/>
+        <FastRelax name="FastRelax" scorefxn="myscore" disable_design="true" task_operations="design_interface" repeats="2"/>
+    </MOVERS>
+
+    <PROTOCOLS>
+	<Add mover_name="LysCst" />
+	<Add mover_name="MyCst" />
+        <FavorNativeResidue bonus="2.00"/>
+        <Add mover_name="FastDesign" />
+        <Add mover_name="FastRelax" />
+
+        <Add filter_name="totalsasa_filter" />
+    </PROTOCOLS>
+
+</ROSETTASCRIPTS>
