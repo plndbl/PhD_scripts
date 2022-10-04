@@ -1,0 +1,7 @@
+Minimization of solvent+Hs with restraints for protein heavy atoms
+&cntrl
+ imin=1, maxcyc=1000, ntmin=1,
+ ntpr=10,
+ ntr=1, restraint_wt=50.0,
+ restraintmask='!:WAT,Na+ & !@H='
+/
