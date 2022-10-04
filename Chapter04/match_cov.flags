@@ -1,0 +1,15 @@
+-match:lig_name LFC
+-ignore_unrecognized_res
+-match:scaffold_active_site_residues EOY4D2_His_renamed.pdb_0.pos
+-match:active_site_definition_by_gridlig EOY4D2_His_renamed.pdb_0.gridlig
+-match:geometric_constraint_file EOY4D2_LF_Cys_ligated_8subs.cst
+-match:required_active_site_atom_names keyatom.txt
+-extra_res_fa LFC.params
+-match:grid_boundary EOY4D2_His_renamed.pdb_0.gridlig
+-gridligpath EOY4D2_His_renamed.pdb_0.gridlig
+-output_format PDB
+-ex1
+-ex2
+-output_matches_per_group 1
+-consolidate_matches true
+-overwrite
