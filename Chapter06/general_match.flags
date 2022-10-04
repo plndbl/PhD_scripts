@@ -1,0 +1,6 @@
+-extra_res_fa PP31.params 
+-match::lig_name PP3 
+-in:ignore_unrecognized_res
+-ex1 
+-ex2 
+-match:geometric_constraint_file PLP_5BVL_231119_LysArgTyr_rst_PP3_copy.cst
