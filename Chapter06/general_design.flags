@@ -1,0 +1,13 @@
+-run:preserve_header
+-enzdes:cstfile PLP_5BVL_231119_LysArgTyr_rst_PP3_copy.cst 
+-enzdes:fix_catalytic_aa
+-extra_res_fa PP31.params
+-in:ignore_unrecognized_res
+-in:file:l 
+-ex1
+-ex2
+-out:no_nstruct_label
+-out:file:scorefile test.sc
+-out:no_nstruct_label
+-out:suffix _test
+-overwrite
