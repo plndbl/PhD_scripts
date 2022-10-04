@@ -1,0 +1,58 @@
+
+# NOTE
+
+#block 1 for a conserved Lys residue. 
+
+CST::BEGIN
+  TEMPLATE::   ATOM_MAP: 1 atom_name: C5 N2 C4
+  TEMPLATE::   ATOM_MAP: 1 residue3: PP3
+
+  TEMPLATE::   ATOM_MAP: 2 atom_type: Nlys ,
+  TEMPLATE::   ATOM_MAP: 2 residue1:  K
+
+  CONSTRAINT:: distanceAB:   2.50 0.20  100   0    9
+  CONSTRAINT::    angle_A:  109.0 60.0  0.00  109. 2
+  CONSTRAINT::    angle_B:  109.0 60.0  0.00  109. 2
+  CONSTRAINT::  torsion_A:  60.0  20.0  0.00  120. 1
+  CONSTRAINT:: torsion_AB:  60.0  20.0  0.00  120. 1
+  CONSTRAINT::  torsion_B:  60.0  20.0  0.00  120. 1
+CST::END
+
+
+
+
+#block 2 for an conserved Arg residue which is present in 
+#racemases but not decarboxylases
+
+CST::BEGIN
+  TEMPLATE::   ATOM_MAP: 1 atom_name: N1 C1 C7 
+  TEMPLATE::   ATOM_MAP: 1 residue3: PP3
+
+  TEMPLATE::   ATOM_MAP: 2 atom_type: Narg,
+  TEMPLATE::   ATOM_MAP: 2 residue1:  R 
+ 
+  CONSTRAINT:: distanceAB:   3.00  0.80 100   0    3
+  CONSTRAINT::    angle_A:  180.2 99.0  0.00  180. 2
+  CONSTRAINT::    angle_B:  180.3 99.0  0.00  360. 2
+  CONSTRAINT::  torsion_A:   0.0  99.0  0.00  360. 1
+  CONSTRAINT:: torsion_AB:   0.0  99.0  0.00  360. 1
+  CONSTRAINT::  torsion_B:   0.0  99.0  0.00  360. 1
+CST::END
+
+
+#block 3 for a basic Tyr residue 
+
+CST::BEGIN
+  TEMPLATE::   ATOM_MAP: 1 atom_name: H11 N2 C11
+  TEMPLATE::   ATOM_MAP: 1 residue3: PP3
+
+  TEMPLATE::   ATOM_MAP: 2 atom_type: OH ,
+  TEMPLATE::   ATOM_MAP: 2 residue1: YS
+
+  CONSTRAINT:: distanceAB:   3.00  1.00  100  0    3
+  CONSTRAINT::    angle_A:  120.2 99.0  0.00  360. 2
+  CONSTRAINT::    angle_B:  120.3 99.0  0.00  360. 2
+  CONSTRAINT::  torsion_A:   0.0  99.0  0.00  360. 1
+  CONSTRAINT:: torsion_AB:   0.0  99.0  0.00  360. 1
+  CONSTRAINT::  torsion_B:   0.0  99.0  0.00  360. 1
+CST::END
