@@ -1,0 +1,18 @@
+for i in *60ns*.nc;
+do
+echo $i
+echo "parm design_2_RBF_13.prmtop" >> ${i}_cpptraj2.in
+echo "trajin $i" >> ${i}_cpptraj2.in
+echo "autoimage" >> ${i}_cpptraj2.in
+echo "hbond contacts :1-110 avgout ${i}_hbond.dat series uuseries ${i}_hbond.gnu" >> ${i}_cpptraj2.in
+echo "distance :110 :RBF out ${i}_RBF_to_HEB.dat" >> ${i}_cpptraj2.in
+echo "rms ToFirst :1-110&!@H= first out ${i}_rmsd.dat mass" >> ${i}_cpptraj2.in
+echo "atomicfluct out ${i}_rmsf.dat @CA byres bfactor" >> ${i}_cpptraj2.in 
+echo "rmsd ca_all @CA out ${i}_rmsd_Ca.dat" >> ${i}_cpptraj2.in
+echo "rmsd HEB first :HEB&!@H out ${i}_rmsd_HEB.dat" >> ${i}_cpptraj2.in
+echo "rmsd ligand first :RBF&!@H out ${i}_rmsd_RBF.dat" >> ${i}_cpptraj2.in
+echo "parm m4D2.pdb" >> ${i}_cpptraj2.in 
+echo "reference m4D2.pdb parm m4D2.pdb [m4D2]" >> ${i}_cpptraj2.in 
+echo "rms Tom4D2 ref [m4D2] :1-109@CA out ${i}_rmsd_m4D2.dat" >> ${i}_cpptraj2.in
+echo "run" >> ${i}_cpptraj2.in
+done
