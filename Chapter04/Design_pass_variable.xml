@@ -1,0 +1,57 @@
+<ROSETTASCRIPTS> 
+        
+    <SCOREFXNS>
+        <ScoreFunction name="myscore" weights="ref2015" >
+             <Reweight scoretype="atom_pair_constraint" weight="1.0" />
+        </ScoreFunction>
+    </SCOREFXNS>
+
+    <RESIDUE_SELECTORS>
+        <Index name="notligand_index" resnums="1-109" />
+        <Index name="notMFL_index" resnums="1-110" />
+    </RESIDUE_SELECTORS>
+
+    <TASKOPERATIONS>
+        <DetectProteinLigandInterface name="design_interface" cut1="7.0" cut2="9.0" cut3="11.0" cut4="13.0" design="1" resfile="%%resfile%%" />
+        <OperateOnResidueSubset name="notligand_tsk" selector="notligand_index" >
+		<RestrictToRepackingRLT/>
+        </OperateOnResidueSubset>
+        <OperateOnResidueSubset name="notMFL_tsk" selector="notMFL_index" >
+		<RestrictToRepackingRLT/>
+        </OperateOnResidueSubset>
+    </TASKOPERATIONS> 
+
+    <FILTERS>
+        <HbondsToResidue name="hbonds_filter" scorefxn="myscore" partners="2" energy_cutoff="-0.5" backbone="true" bb_bb="false" sidechain="true" residue= "111" from_other_chains="true" from_same_chain="true" confidence="0" />
+        <TotalSasa name="totalsasa_filter" threshold="1" upper_threshold="100" hydrophobic="0" polar="0" task_operations="notMFL_tsk" confidence="0" />
+    </FILTERS>
+
+    <MOVERS>  
+        <EnzRepackMinimize name="cstopt"     task_operations="design_interface" cst_opt="1" design="1" repack_only="0" scorefxn_minimize="myscore" scorefxn_repack="myscore" minimize_rb="1" minimize_sc="1" minimize_bb="1" cycles="1"/> 
+        <EnzRepackMinimize name="desmin"     task_operations="design_interface"  design="1" repack_only="0" scorefxn_minimize="myscore" scorefxn_repack="myscore" minimize_rb="1" minimize_sc="1" minimize_bb="1" cycles="1"/> DESIGN
+        <EnzRepackMinimize name="fin_min"    task_operations="design_interface" design="0" repack_only="0" scorefxn_minimize="myscore" scorefxn_repack="myscore" minimize_rb="1" minimize_sc="1" minimize_bb="1" cycles="1"/> MINIMIZATION
+        <EnzRepackMinimize name="fin_rpkmin" task_operations="design_interface" design="0" repack_only="1" scorefxn_minimize="myscore" scorefxn_repack="myscore" minimize_rb="1" minimize_sc="1" minimize_bb="1" cycles="1"/> REPACK
+        <AddOrRemoveMatchCsts name="add_cst_MFL" cst_instruction="add_new" cstfile="EOY4D2_LF_Cys_ligated_8subs.cst" accept_blocks_missing_header="1"/>
+        <FastRelax name="fastrelax" scorefxn="myscore" disable_design="false" task_operations="design_interface" repeats="5" />
+        <FastRelax name="fastrelax_nodes" scorefxn="myscore" disable_design="true" task_operations="design_interface" repeats="5" />
+    </MOVERS>
+
+    <PROTOCOLS>
+        <FavorNativeResidue bonus="2.00"/>
+	<Add mover_name="add_cst_MFL" /> 
+        <Add mover_name="desmin" />
+        <Add mover_name="fin_min" /> 
+        <Add mover_name="fin_rpkmin" />
+        <Add mover_name="fastrelax" /> 
+        <Add mover_name="desmin" />
+        <Add mover_name="fin_min" />
+        <Add mover_name="fin_rpkmin" />
+        <Add mover_name="fastrelax" />
+        <Add mover_name="desmin" />
+        <Add mover_name="fin_min" />
+        <Add mover_name="fin_rpkmin" />
+        <Add filter_name="hbonds_filter" />
+        <Add filter_name="totalsasa_filter" />
+    </PROTOCOLS>
+
+</ROSETTASCRIPTS>
