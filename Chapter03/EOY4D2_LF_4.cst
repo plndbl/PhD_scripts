@@ -1,0 +1,25 @@
+CST::BEGIN
+  TEMPLATE::   ATOM_MAP: 1 atom_type: ONH2
+  TEMPLATE::   ATOM_MAP: 1 residue3: MFL
+  TEMPLATE::   ATOM_MAP: 2 atom_type: Hpol,HNbb
+  TEMPLATE::   ATOM_MAP: 2 residue1:  STQNRKWHY
+  CONSTRAINT:: distanceAB:   2.0  0.4  100.      0.  2
+  CONSTRAINT::    angle_A:   120.0 10.0  1.00  120. 1
+  CONSTRAINT::    angle_B:   180.0 10.0  1.00 360. 1
+  CONSTRAINT::  torsion_A:   0.0 10.0  1.00   180. 1
+  CONSTRAINT:: torsion_AB:   0.0 10.0  1.00   180. 1
+  CONSTRAINT::  torsion_B:   0.0 10.0  1.00   180. 1
+CST::END
+
+CST::BEGIN
+  TEMPLATE::   ATOM_MAP: 1 atom_type: Hpol
+  TEMPLATE::   ATOM_MAP: 1 residue3: MFL 
+  TEMPLATE::   ATOM_MAP: 2 atom_type: OCbb,OH,ONH2,OOC
+  TEMPLATE::   ATOM_MAP: 2 residue1:   STNDQEY
+  CONSTRAINT:: distanceAB:   2.0  0.4  100.      0.  2
+  CONSTRAINT::    angle_A:   180.0 10.0  1.00 360. 1
+  CONSTRAINT::    angle_B:   180.0 10.0  1.00 360. 1
+  CONSTRAINT::  torsion_A:   0.0 10.0  1.00   180. 1
+  CONSTRAINT:: torsion_AB:   0.0 10.0  1.00   180. 1
+  CONSTRAINT::  torsion_B:   0.0 10.0  1.00   180. 1
+CST::END
