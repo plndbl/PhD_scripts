@@ -1,0 +1,12 @@
+CST::BEGIN
+  TEMPLATE::   ATOM_MAP: 1 atom_name: C2 C1 C6 
+  TEMPLATE::   ATOM_MAP: 1 residue3: LFC
+  TEMPLATE::   ATOM_MAP: 2 atom_type: SH1
+  TEMPLATE::   ATOM_MAP: 2 residue1: C
+  CONSTRAINT:: distanceAB:   1.5  0.4  100.      1.  2
+  CONSTRAINT::    angle_A:   120.0 10.0  1.00  120. 1
+  CONSTRAINT::    angle_B:   180.0 10.0  1.00 360. 1
+  CONSTRAINT::  torsion_A:   0.0 10.0  1.00   180. 1
+  CONSTRAINT:: torsion_AB:   0.0 10.0  1.00   180. 1
+  CONSTRAINT::  torsion_B:   0.0 10.0  1.00   180. 1
+CST::END
