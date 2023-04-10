@@ -2,7 +2,7 @@
 -ignore_unrecognized_res
 -match:scaffold_active_site_residues EOY4D2_His_renamed.pdb_0.pos
 -match:active_site_definition_by_gridlig EOY4D2_His_renamed.pdb_0.gridlig
--match:geometric_constraint_file EOY4D2_LF_1.cst #here change whatever Match constraints you would like to use
+-match:geometric_constraint_file EOY4D2_LF_1.cst #here change whatever Match constraints you would like to use. different csts represent different atoms involved in Hbonding.
 -match:required_active_site_atom_names keyatom.txt
 -extra_res_fa MFL.params
 -match:grid_boundary EOY4D2_His_renamed.pdb_0.gridlig
